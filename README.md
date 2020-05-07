@@ -3,7 +3,9 @@
 An add-on for kodi to create a openvpn server that runs in raspeberry pi devices.
 
 User a docker image which git is: nvdias0/rpi-docker-openvpn
+
 The docker repository is in: nvdias/rpi-openvpn
+
 
 ## Installation
 
