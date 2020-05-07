@@ -7,7 +7,7 @@ The docker repository is in: nvdias/rpi-openvpn
 
 ## Installation
 
-a) download docker.openvpn.server respository as a zip file.
+a) download docker.openvpn.server repository as a zip file - you'll probably need to rename the zip to docker.openvpn.server.zip and the first directory as docker.openvpn.server (git adds the "master" keyword after the name);
 
 b) Install as a kodi add-on (add-ons / install from zip file)
 
