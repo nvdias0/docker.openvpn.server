@@ -29,12 +29,6 @@ read
 echo "Download docker image"
 docker run -v $OVPN_DATA:/etc/openvpn --rm $DOCKERIMAGE ovpn_genconfig -u udp://$OVPN_SERVER
 
-# The container will prompt for a passphrase to store the private key used by the certificate authority.
-#docker volume create --name $OVPN_DATA
-
-# Create config:
-docker run -v $OVPN_DATA:/etc/openvpn --rm $DOCKERIMAGE ovpn_genconfig -u udp://$OVPN_SERVER
-
 # Give access to LAN from VPN
 echo "
 
