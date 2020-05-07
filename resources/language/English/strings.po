@@ -1,0 +1,18 @@
+msgid ""
+msgstr ""
+
+msgctxt "#30000"
+msgid "Configuration"
+msgstr ""
+
+msgctxt "#30001"
+msgid "After changing server name: run openvpn-add-server from the console"
+msgstr ""
+
+msgctxt "#30002"
+msgid "OpenVPN server DDNS name or WAN IP address"
+msgstr ""
+
+msgctxt "#30003"
+msgid "(config in /storage/.kodi/userdata/addon_data/docker.openvpn.server/)"
+msgstr ""

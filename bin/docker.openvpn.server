@@ -1,0 +1,33 @@
+s##!/bin/sh
+# Launches docker.openvpn
+# Receives DOCKERIMAGE ADDON_HOME
+# Container will be renamed with the name of this script
+# Spawning openvpn.start to call docker is needed to have access to changing ip route.
+# why ? don't know !!!
+
+name="$(basename $0)"
+DOCKERIMAGE=$1
+ADDON_HOME=$2
+
+docker stop "$name" 2>/dev/null
+
+# remove containers from previous usages
+docker rm "$name" 2>/dev/null
+
+# remove images from previous usages
+docker rmi $(docker images | grep "$DOCKERIMAGE" | grep '<none>' | sed 's/\s\+/\t/g' | cut -f3) 2>/dev/null
+
+# update if needed
+docker pull $DOCKERIMAGE:latest
+
+# start container, update if needed.
+# privileged needed for ipv6
+docker run --name="$name" \
+	-v $ADDON_HOME:/etc/openvpn \
+	-e TZ="$TIMEZONE" \
+	-d \
+	-p 1194:1194/udp \
+	--cap-add=NET_ADMIN \
+	--privileged \
+	-e WARNING_MSG="DO NOT CONTROL THIS IN PORTAINER!" \
+    "$DOCKERIMAGE":latest
