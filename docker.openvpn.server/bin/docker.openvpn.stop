@@ -1,5 +1,0 @@
-#!/bin/sh
-
-. /etc/profile
-docker stop docker.openvpn.server 2> /dev/null
-

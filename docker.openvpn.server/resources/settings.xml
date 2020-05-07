@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<settings>
-   <category   label="30000">
-      <setting label="30001" type="lsep" />
-      <setting label="30002" type="text"  id="OVPN_SERVER"  default="" />
-   </category>
-</settings>
