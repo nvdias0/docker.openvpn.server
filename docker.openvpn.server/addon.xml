@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="docker.openvpn.server"
+       name="OpenVPN server for Raspberry Pi (docker)"
+       version="1.0.4"
+       provider-name="Team LibreELEC">
+  <requires>
+    <import addon="os.libreelec.tv" version="7.0"/>
+    <import addon="service.system.docker" version="0.0.0" />
+  </requires>
+  <extension point="xbmc.service" library="default.py">
+    <provides></provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>OpenVPN server in a docker container</summary>
+    <description>
+This add-on sets up an OpenVPN server for Raspberrry Pi devices.
+The server will run in a docker container.
+
+*** Port 1194 UDP on the router has to be forwarded to this machine.
+
+*** After installation, the server ddns name / wan ip address mut be defined in the kodi interface add-on configuration.
+
+*** Then go into the console and execute:
+    'openvpn-add-server' to prepare the server and generate the keys
+    'openvpn-add-user' for each user accessing the server
+
+*** Server keys generation takes A LOT OF TIME !
+    Up to 15 minutes in a Raspberry Pi 4 ... Be Patient ...
+
+*** Add-on configuration will go into folder:
+    /storage/.kodi/userdata/addon_data/docker.openvpn.server/
+    </description>
+    <disclaimer>
+    </disclaimer>
+    <news>
+docker.openvpn.server:
+-------------------------------
+1.0.4
+- docker images updates if needed
+- Scripts and instructions updated
+1.0.2
+- Docker image updated to new repository
+- Labels text adjusted
+1.0.1
+- Adjustments to spawning mechanism to allow access to ip route and ipv6 overwrites
+1.0.0
+- Initial release
+    </news>
+    <platform>all</platform>
+    <website>http://linuxserver.io/</website>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>

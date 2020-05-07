@@ -1,0 +1,2 @@
+ADDON_HOME=/storage/.kodi/userdata/addon_data/docker.openvpn.server
+vi $ADDON_HOME/openvpn.conf

@@ -1,0 +1,41 @@
+#!/bin/sh
+## INSTALL docker.openvpn.server
+
+. /etc/profile
+oe_setup_addon docker.openvpn.server
+
+DOCKERIMAGE="nvdias/rpi-openvpn"
+OVPN_DATA=/storage/.kodi/userdata/addon_data/docker.openvpn.server
+
+if [ "$OVPN_SERVER" == "" ] || [ ! -f $OVPN_DATA/openvpn.conf ] ; then
+  echo "Server not configured"
+  echo "a) Configure OpenVPN in kodi to use this addon."
+  echo "b) Go to console and execute:  openvpn-add-server"
+  echo "c) Run this script to add users."
+  exit
+fi
+
+echo -n "Server  : $(cat $OVPN_DATA/openvpn.conf  | grep cert | sed -e 's/.*issued\/\(.*\).crt/\1/')
+Add user: "
+read OVPN_USER
+echo
+# Generate a client certificate WITHOUT passphrase
+#  docker run -v $OVPN_DATA:/etc/openvpn --rm -it $DOCKERIMAGE easyrsa build-client-full $OVPN_USER nopass
+
+# Generate a client certificate WITH passphrase
+docker run -v $OVPN_DATA:/etc/openvpn --rm -it $DOCKERIMAGE easyrsa build-client-full $OVPN_USER
+
+# Extract the ovpn configuration file  
+mkdir -p /storage/ovpn
+docker run -v $OVPN_DATA:/etc/openvpn --rm $DOCKERIMAGE ovpn_getclient $OVPN_USER > /storage/ovpn/$OVPN_USER.ovpn
+
+echo "
+
+User $OVPN_USER created.
+
+ovpn profile stored in:
+/storage/ovpn/$OVPN_USER.ovpn
+
+(it must be given to the client to connect)
+"
+
